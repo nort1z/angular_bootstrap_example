@@ -1,4 +1,4 @@
-angular_bootstrap_example
+Angular.js + Bootstrap Example
 =========================
 
-Angular.js + Bootstrap Example
+Creado con NetBeans 8 y Tomcat 8

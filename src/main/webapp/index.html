@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="resource/img/favicon.ico" />
+    </head>
+    <body>
+        <div class="container" ng-app="app"> 
+             <div class="row">
+                <div class="clearfix">&nbsp;</div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-2"> 
+                    <ul class="nav">
+                        <li><a href="#/contacto">Contactos</a></li>
+                        <li><a href="#/bienvenido">Inicio</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-8 column" ng-view>
+                    
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+        <script src="js/controller/controllers.js" type="text/javascript"></script>
+        <script src="js/service/services.js" type="text/javascript"></script>
+    </body>
+</html>

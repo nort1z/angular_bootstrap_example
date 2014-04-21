@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <form role="form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" ng-model="newcontact.name"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" class="form-control" ng-model="newcontact.email" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" class="form-control" ng-model="newcontact.phone" />
+                </div>
+                <input type="hidden" ng-model="newcontact.id" />
+                <input type="button" class="btn btn-primary" value="Save" ng-click="saveContact()"  />
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="clearfix">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="contact in contacts">
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td> 
+                            <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | 
+                            <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

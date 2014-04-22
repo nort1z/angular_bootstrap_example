@@ -22,7 +22,7 @@ module.service('ContactService', function () {
         } else {
             //for existing contact, find this contact using id
             //and update it.
-            for (i in contacts) {
+            for (var i in contacts) {
                 if (contacts[i].id == contact.id) {
                     contacts[i] = contact;
                 }
@@ -34,7 +34,7 @@ module.service('ContactService', function () {
     //simply search contacts list for given id
     //and returns the contact object if found
     this.get = function (id) {
-        for (i in contacts) {
+        for (var i in contacts) {
             if (contacts[i].id == id) {
                 return contacts[i];
             }
@@ -45,7 +45,7 @@ module.service('ContactService', function () {
     //iterate through contacts list and delete 
     //contact if found
     this.delete = function (id) {
-        for (i in contacts) {
+        for (var i in contacts) {
             if (contacts[i].id == id) {
                 contacts.splice(i, 1);
             }

@@ -79,5 +79,9 @@ public class Contacto implements Serializable{
         this.phone = phone;
     }
     
+    @Override
+    public String toString() {
+        return "Contacto [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + "]";
+    }
     
 }

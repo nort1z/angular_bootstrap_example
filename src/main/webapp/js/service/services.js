@@ -1,17 +1,18 @@
 'use strict';
 
-module.service('ContactService', function ($http) {
+module.factory('ContactService', function ($http) {
     
    //simply returns the contacts list
-    this.list = function () {
-        var lista;
-       
-        $http.get('contacto/contactosList.json').success(function(rsList){
-            lista = rsList;
+       var list;
+        $http.get('contacto/contactosList.json').then(function(data){
+            console.log(data);
+            list =  data;
         });
-       
-        return lista;
-    }
+        return {
+            all:function(){
+                return list;
+            }
+        };
 });
 
 

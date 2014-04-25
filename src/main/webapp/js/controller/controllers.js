@@ -5,7 +5,9 @@ module.controller('BienvenidoController', function ($scope) {
 });
 
 module.controller('ContactController', function ($scope, ContactService) {
-
-    $scope.contacts = ContactService.list();
+    
+    var lista = ContactService.all();
+    console.log("cantidad: " + JSON.stringify(lista));
+    $scope.contacts = lista;
 });
 

@@ -8,6 +8,8 @@ package cl.niom.spring.angular.controller;
 
 import cl.niom.spring.angular.model.Contacto;
 import cl.niom.spring.angular.service.ContactoService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,12 +26,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/contacto/")
 public class ContactoController {
     
-   @Autowired
+   @Autowired(required = true)
     private ContactoService contactoService;
 
-    @RequestMapping(value = "contactosList.json", method = RequestMethod.GET,headers="Accept=application/json")
-    public @ResponseBody List<Contacto> getContactosList() {
-        return contactoService.getAllContactos();
+    @RequestMapping(value = "contactosList.json", method = RequestMethod.GET,produces="application/json")
+    @ResponseBody
+    public String getContactosList() {
+        
+        List<Contacto>  lst = contactoService.getAllContactos();
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        builder.disableHtmlEscaping();
+                                
+        return gson.toJson(lst);
     }
 
     @RequestMapping(value = "addContacto/{contacto}", method = RequestMethod.GET,headers="Accept=application/json")

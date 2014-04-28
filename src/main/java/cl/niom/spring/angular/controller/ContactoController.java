@@ -8,10 +8,9 @@ package cl.niom.spring.angular.controller;
 
 import cl.niom.spring.angular.model.Contacto;
 import cl.niom.spring.angular.service.ContactoService;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,19 +28,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/contacto/")
 public class ContactoController {
     
-   @Autowired(required = true)
+    @Autowired(required = true)
     private ContactoService contactoService;
 
     @RequestMapping(value = "getAllContactos", method = RequestMethod.GET)
     @ResponseBody
+    @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "CallToPrintStackTrace"})
     public String getAllContactos() {
+        String json = "";
+        try{
+            List<Contacto>  lst = contactoService.extraerContactos();
+            
+            ObjectMapper mapper = new ObjectMapper();
+            json = mapper.writerWithType(new TypeReference<List<Contacto>>(){}).writeValueAsString(lst);
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         
-        List<Contacto>  lst = contactoService.getAllContactos();
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        builder.disableHtmlEscaping();
-                                
-        return gson.toJson(lst);
+        return json;
     }
 
     @RequestMapping(value = "addContacto", method = RequestMethod.POST)
@@ -58,7 +63,7 @@ public class ContactoController {
                 //convert json string to object
                 Contacto contacto = reader.readValue(jsonContacto);
                 
-                contactoService.addContacto(contacto);
+                contactoService.ingresarContacto(contacto);
                 respuesta = "ok";
             }
         }catch(Exception ex){
@@ -70,12 +75,7 @@ public class ContactoController {
     @RequestMapping(value = "removeContacto/{contacto}", method = RequestMethod.GET)
     @ResponseBody
     public void removeContacto(@PathVariable("contacto") Contacto contacto) {
-        contactoService.deleteContacto(contacto);
+        contactoService.eliminarContacto(contacto);
     }
 
-    @RequestMapping(value = "removeAllContactos", method = RequestMethod.GET)
-    @ResponseBody
-    public void removeAllContactos() {
-        contactoService.deleteAll();
-    }
 }

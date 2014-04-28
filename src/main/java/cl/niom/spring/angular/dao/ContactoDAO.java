@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cl.niom.spring.angular.service;
+package cl.niom.spring.angular.dao;
 
 import cl.niom.spring.angular.model.Contacto;
 import java.util.List;
@@ -13,29 +13,36 @@ import java.util.List;
  *
  * @author Nortiz
  */
-public interface ContactoService {
-    /**
-     * 
-     * @return 
-     */
-    public List<Contacto> extraerContactos();
+public interface ContactoDAO {
     
     /**
      * 
      * @param contacto 
      */
-    public void ingresarContacto(Contacto contacto);
-
+    public void addContacto(Contacto contacto);
+     
+    /**
+     * 
+     * @return 
+     */
+    public List<Contacto> listContacto();
+     
     /**
      * 
      * @param contacto 
      */
-    public void eliminarContacto(Contacto contacto);
+    public void deleteContacto(Contacto contacto);
+     
+    /**
+     * 
+     * @param contacto 
+     */
+    public void updateContacto(Contacto contacto);
     
     /**
      * 
      * @param id
      * @return 
      */
-    public Contacto buscarContacoPorId(String id);
+    public Contacto findById(String id);
 }

@@ -26,12 +26,21 @@ public class ContactoServiceImpl implements ContactoService{
     @Override
     public List<Contacto> getAllContactos() {
         
+        contactosList = new ArrayList<>();
+        
         Contacto cn = new Contacto();
         cn.setId("1");
         cn.setName("Nelson Ortiz");
         cn.setEmail("nortiz@pragma.cl");
         cn.setPhone("+56977482251");
         contactosList.add(cn);
+        
+        Contacto cn2 = new Contacto();
+        cn2.setId("2");
+        cn2.setName("Nelson Ortiz Rojas");
+        cn2.setEmail("nortizr@pragma.cl");
+        cn2.setPhone("+56977482251");
+        contactosList.add(cn2);
         
         return contactosList;
     }

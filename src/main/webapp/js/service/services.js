@@ -1,18 +1,16 @@
 'use strict';
 
 module.factory('ContactService', function ($http) {
-    
-   //simply returns the contacts list
-       var list;
-        $http.get('contacto/contactosList.json').then(function(data){
-            console.log(data);
-            list =  data;
-        });
-        return {
-            all:function(){
-                return list;
+    return {
+        getAll: function(callback) {
+          $http.get('contacto/getAllContactos').success(callback);
+        },
+        addContact: function(callback,contact) {
+            if (contact.id == null) {
+                $http.post('contacto/addContacto',contact).success(callback);
             }
-        };
+        }
+    }; 
 });
 
 

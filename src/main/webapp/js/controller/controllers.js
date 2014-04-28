@@ -6,8 +6,20 @@ module.controller('BienvenidoController', function ($scope) {
 
 module.controller('ContactController', function ($scope, ContactService) {
     
-    var lista = ContactService.all();
-    console.log("cantidad: " + JSON.stringify(lista));
-    $scope.contacts = lista;
+    ContactService.getAll(function(results) {
+        $scope.contacts = results;
+    });
+    
+ 
+    $scope.saveContact = function () {
+        ContactService.addContact(function(results) {
+            if(results == "ok"){
+                ContactService.getAll(function(results) {
+                    $scope.contacts = results;
+                });
+                $scope.newcontact = {};
+            }
+        },$scope.newcontact);
+    };
 });
 

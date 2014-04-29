@@ -9,6 +9,16 @@ module.factory('ContactService', function ($http) {
             if (contact.id == null) {
                 $http.post('contacto/addContacto',contact).success(callback);
             }
+        },
+        deleteContact: function(callback,id) {
+            if (id != null) {
+                $http.post('contacto/removeContacto',id).success(callback);
+            }
+        },
+        findContact: function(callback,id) {
+            if (id != null) {
+                $http.post('contacto/findContacto',id).success(callback);
+            }
         }
     }; 
 });

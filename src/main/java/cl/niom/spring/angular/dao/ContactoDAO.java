@@ -31,7 +31,7 @@ public interface ContactoDAO {
      * 
      * @param contacto 
      */
-    public void deleteContacto(Contacto contacto);
+    public void deleteContacto(String id);
      
     /**
      * 

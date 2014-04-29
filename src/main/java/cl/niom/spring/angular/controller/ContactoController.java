@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -72,10 +71,28 @@ public class ContactoController {
         return respuesta;
     }
 
-    @RequestMapping(value = "removeContacto/{contacto}", method = RequestMethod.GET)
+    @RequestMapping(value = "removeContacto", method = RequestMethod.POST)
     @ResponseBody
-    public void removeContacto(@PathVariable("contacto") Contacto contacto) {
-        contactoService.eliminarContacto(contacto);
+    public void removeContacto(@RequestBody  String id) {
+        contactoService.eliminarContacto(id);
+    }
+    
+    @RequestMapping(value = "findContacto", method = RequestMethod.POST)
+    @ResponseBody
+    @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "CallToPrintStackTrace"})
+    public String findContacto(@RequestBody  String id) {
+        String json = "";
+        try{
+            Contacto contacto = contactoService.buscarContacoPorId(id);
+            
+            ObjectMapper mapper = new ObjectMapper();
+            json = mapper.writerWithType(new TypeReference<Contacto>(){}).writeValueAsString(contacto);
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return json;
     }
 
 }

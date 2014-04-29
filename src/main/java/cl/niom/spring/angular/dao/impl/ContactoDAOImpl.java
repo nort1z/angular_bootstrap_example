@@ -40,8 +40,11 @@ public class ContactoDAOImpl implements ContactoDAO{
     }
      
     @Override
-    public void deleteContacto(Contacto contacto) {
-        mongoTemplate.remove(contacto, COLLECTION_NAME);
+    public void deleteContacto(String id) {
+        Contacto contacto = this.findById(id);
+        if(contacto != null)
+            mongoTemplate.remove(contacto, COLLECTION_NAME);
+            
     }
      
     @Override

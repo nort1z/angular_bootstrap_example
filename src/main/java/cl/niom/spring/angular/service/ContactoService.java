@@ -30,7 +30,7 @@ public interface ContactoService {
      * 
      * @param contacto 
      */
-    public void eliminarContacto(Contacto contacto);
+    public void eliminarContacto(String id);
     
     /**
      * 

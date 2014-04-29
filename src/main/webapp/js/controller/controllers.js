@@ -21,5 +21,21 @@ module.controller('ContactController', function ($scope, ContactService) {
             }
         },$scope.newcontact);
     };
+    
+    $scope.delete = function (id) {
+        ContactService.deleteContact(function(results) {
+            ContactService.getAll(function(results) {
+                $scope.contacts = results;
+            });
+            $scope.newcontact = {};
+        },id);
+    };
+    
+    $scope.edit = function (id) {
+        ContactService.findContact(function(results) {
+            console.log(results);
+            $scope.newcontact = angular.copy(results);
+        },id);
+    };
 });
 

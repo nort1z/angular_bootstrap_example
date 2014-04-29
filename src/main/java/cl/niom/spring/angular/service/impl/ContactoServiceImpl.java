@@ -46,9 +46,9 @@ public class ContactoServiceImpl implements ContactoService{
 
 
     @Override
-    public void eliminarContacto(Contacto contacto) {
+    public void eliminarContacto(String id) {
         try{
-            contactoDAO.deleteContacto(contacto);
+            contactoDAO.deleteContacto(id);
         }catch(Exception ex){
             throw new ServiceException("Error al eliminar un contacto",ex);
         }

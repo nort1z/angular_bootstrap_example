@@ -25,7 +25,6 @@ public class Filtro implements javax.servlet.Filter {
                        FilterChain chain)
       throws java.io.IOException, javax.servlet.ServletException { 
     
-
     chain.doFilter(request, response);
   } 
 

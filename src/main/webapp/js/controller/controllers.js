@@ -12,14 +12,19 @@ module.controller('ContactController', function ($scope, ContactService) {
     
  
     $scope.saveContact = function () {
-        ContactService.addContact(function(results) {
-            if(results == "ok"){
-                ContactService.getAll(function(results) {
-                    $scope.contacts = results;
-                });
-                $scope.newcontact = {};
-            }
-        },$scope.newcontact);
+        var contacto = $scope.newcontact;
+        if(contacto.name != null && contacto.email != null && contacto.phone != null){
+            ContactService.addContact(function(results) {
+                if(results == "ok"){
+                    ContactService.getAll(function(results) {
+                        $scope.contacts = results;
+                    });
+                    $scope.newcontact = {};
+                }else{
+                    console.log("err: " + results);
+                }
+            },contacto);
+        }
     };
     
     $scope.delete = function (id) {

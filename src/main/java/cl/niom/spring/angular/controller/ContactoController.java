@@ -30,7 +30,7 @@ public class ContactoController {
     @Autowired(required = true)
     private ContactoService contactoService;
 
-    @RequestMapping(value = "getAllContactos", method = RequestMethod.GET)
+    @RequestMapping(value = "getAllContactos.json", method = RequestMethod.GET)
     @ResponseBody
     @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "CallToPrintStackTrace"})
     public String getAllContactos() {
@@ -48,14 +48,13 @@ public class ContactoController {
         return json;
     }
 
-    @RequestMapping(value = "addContacto", method = RequestMethod.POST)
+    @RequestMapping(value = "addContacto.json", method = RequestMethod.POST)
     @ResponseBody
     @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "CallToPrintStackTrace"})
     public String addContacto(@RequestBody  String jsonContacto) {
         String respuesta = "";
         try{
             if(jsonContacto != null){
-
                 //create ObjectMapper instance
                 ObjectMapper objectMapper = new ObjectMapper();
                 ObjectReader reader = objectMapper.reader(Contacto.class);
@@ -71,13 +70,13 @@ public class ContactoController {
         return respuesta;
     }
 
-    @RequestMapping(value = "removeContacto", method = RequestMethod.POST)
+    @RequestMapping(value = "removeContacto.json", method = RequestMethod.POST)
     @ResponseBody
     public void removeContacto(@RequestBody  String id) {
         contactoService.eliminarContacto(id);
     }
     
-    @RequestMapping(value = "findContacto", method = RequestMethod.POST)
+    @RequestMapping(value = "findContacto.json", method = RequestMethod.POST)
     @ResponseBody
     @SuppressWarnings({"BroadCatchBlock", "TooBroadCatch", "CallToPrintStackTrace"})
     public String findContacto(@RequestBody  String id) {

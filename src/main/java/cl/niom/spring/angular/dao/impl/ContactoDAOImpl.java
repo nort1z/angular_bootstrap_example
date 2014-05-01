@@ -31,7 +31,7 @@ public class ContactoDAOImpl implements ContactoDAO{
         if (!mongoTemplate.collectionExists(Contacto.class)) {
             mongoTemplate.createCollection(Contacto.class);
         }
-        mongoTemplate.insert(contacto, COLLECTION_NAME);
+        mongoTemplate.save(contacto, COLLECTION_NAME);
     }
      
     @Override
